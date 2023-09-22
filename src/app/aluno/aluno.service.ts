@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import Aluno from '../shared/models/Aluno';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlunoService {
   private apiUrl: string;
 
-  constructor(private http: HttpClient) { 
-    this.apiUrl = 'https://backend-academia-production.up.railway.app/'
+  constructor(private http: HttpClient) {
+    this.apiUrl = 'https://backend-academia-production.up.railway.app/';
   }
 
   getAlunos(): Observable<Aluno[]> {
@@ -26,7 +26,10 @@ export class AlunoService {
   }
 
   updateAluno(alunoAtualizado: Aluno): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/alunos/${alunoAtualizado.id}`, alunoAtualizado);
+    return this.http.put<void>(
+      `${this.apiUrl}/alunos/${alunoAtualizado.id}`,
+      alunoAtualizado
+    );
   }
 
   deleteAluno(id: number): Observable<void> {
