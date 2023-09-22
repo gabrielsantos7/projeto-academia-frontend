@@ -3,8 +3,8 @@ import Avaliacao  from './Avaliacao';
 export default interface Aluno {
    id: number;
    nome: string; 
-   altura: number; // Verificar
-   peso: number; // Verificar
+   //altura: number; // Verificar
+   //peso: number; // Verificar
    telefone: string;
    dataNascimento: Date;
    endereco: {
@@ -15,10 +15,10 @@ export default interface Aluno {
       cidade: string;
       estado: string;
       cep: string;
-      aluno: number; // Verificar
+      //aluno: number; // Verificar
    }
 
-   avaliacoes: Avaliacao[] // Verificar
+   avaliacoes: Avaliacao[];
 
    // {
       // "id": 1,
