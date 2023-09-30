@@ -2,12 +2,17 @@ ul > li{
   cursor: pointer;
 }
 
+ul {
+  max-width: 15.4vw;
+}
+
 #tbl-endereco {
   max-width: 40vw;
 }
 
 #tbl-avaliacoes {
   max-width: 95vw;
+  margin-bottom: 15%;
 }
 
 .bi-pencil-square {
