@@ -24,4 +24,8 @@ export class ListAllComponent {
       }
     });
   }
+
+  viewDetails(id: number) {
+    
+  }
 }
