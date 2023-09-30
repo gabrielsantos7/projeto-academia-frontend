@@ -3,17 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { AlunoRoutingModule } from './aluno-routing.module';
 import { AlunoService } from './aluno.service';
-import { AvaliacaoService } from './avaliacao.service';
-import { ListAllComponent } from './list-all/list-all.component';
 
 @NgModule({
-  declarations: [
-    ListAllComponent
+  declarations: [],
+  imports: [
+    CommonModule,
+    AlunoRoutingModule
   ],
-  imports: [CommonModule, AlunoRoutingModule],
-  exports: [
-    ListAllComponent
-  ],
-  providers: [AlunoService, AvaliacaoService],
+  exports: [AlunoService],
 })
 export class AlunoModule {}
