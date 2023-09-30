@@ -1,43 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Avaliacao from 'src/app/shared/models/Avaliacao';
+import Endereco from 'src/app/shared/models/Endereco';
+import { AlunoService } from '../aluno.service';
+import Aluno from 'src/app/shared/models/Aluno';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-show-details',
   templateUrl: './show-details.component.html',
-  styleUrls: ['./show-details.component.scss']
+  styleUrls: ['./show-details.component.scss'],
 })
-export class ShowDetailsComponent {
+export class ShowDetailsComponent implements OnInit {
   active: boolean = true;
-  avaliacoes: Avaliacao[] = [
-    {
-      id: 1,
-      data: new Date("2023-07-20"),
-      peso: 80,
-      altura: 1.70,
-      medidas: [80, 60, 90],
-      porcentagemGordura: 20,
-      observacoes: "Avaliação inicial",
-    },
-    {
-      id: 2,
-      data: new Date("2023-08-03"),
-      peso: 75,
-      altura: 1.70,
-      medidas: [75, 55, 85],
-      porcentagemGordura: 15,
-      observacoes: "Avaliação após 2 semanas",
-    },
-    {
-      id: 3,
-      data: new Date("2023-08-10"),
-      peso: 70,
-      altura: 1.70,
-      medidas: [70, 50, 80],
-      porcentagemGordura: 10,
-      observacoes: "Avaliação após 4 semanas",
-    },
-  ];
+  isLoading: boolean = true;
+  avaliacoes: Avaliacao[] = [];
+  endereco: Endereco = {
+    id: 0,
+    logradouro: '',
+    numero: '',
+    bairro: '',
+    cidade: '',
+    estado: '',
+    cep: '',
+  };
+
   changeActive() {
-    this.active =!this.active;
+    this.active = !this.active;
+  }
+
+  constructor(
+    private alunoService: AlunoService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    const idAluno = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.alunoService.getAlunoById(idAluno).subscribe({
+      next: (aluno: Aluno) => {
+        this.endereco = aluno.endereco;
+        this.avaliacoes = aluno.avaliacoes;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Erro ao carregar alunos:', error);
+        this.isLoading = false;
+      },
+    });
   }
 }

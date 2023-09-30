@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderModule } from './core/header/header.module';
 import { FooterModule } from './core/footer/footer.module';
+import { LoaderModule } from './core/loader/loader.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FooterModule } from './core/footer/footer.module';
     HomeModule,
     HttpClientModule,
     HeaderModule, // Importe o HeaderModule
-    FooterModule  // Importe o FooterModule
+    FooterModule,  // Importe o FooterModule
+    LoaderModule, // Importe o LoaderComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

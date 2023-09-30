@@ -1,23 +1,14 @@
 import Avaliacao  from './Avaliacao';
+import Endereco from './Endereco';
 
 export default interface Aluno {
    id: number;
-   nome: string; 
+   nome: string;
    //altura: number; // Verificar
    //peso: number; // Verificar
    telefone: string;
    dataNascimento: Date;
-   endereco: {
-      id: number;
-      logradouro: string;
-      numero: string;
-      bairro: string;
-      cidade: string;
-      estado: string;
-      cep: string;
-      //aluno: number; // Verificar
-   }
-
+   endereco: Endereco
    avaliacoes: Avaliacao[];
 
    // {
