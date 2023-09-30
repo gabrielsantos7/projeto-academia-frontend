@@ -5,6 +5,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { IndexComponent } from './index/index.component';
 import { FooterModule } from '../core/footer/footer.module';
 import { HeaderModule } from '../core/header/header.module';
+import { AlunoService } from '../aluno/aluno.service';
+import { AlunoModule } from '../aluno/aluno.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,11 @@ import { HeaderModule } from '../core/header/header.module';
     CommonModule,
     HomeRoutingModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    AlunoModule
+  ],
+  providers: [
+    AlunoService
   ]
 })
 export class HomeModule { }

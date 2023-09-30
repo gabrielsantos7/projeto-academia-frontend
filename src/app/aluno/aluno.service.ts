@@ -10,7 +10,8 @@ export class AlunoService {
   private apiUrl: string;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = 'https://backend-academia-production.up.railway.app/';
+    //this.apiUrl = 'https://backend-academia-production.up.railway.app/';
+    this.apiUrl = 'http://localhost:8080'
   }
 
   getAlunos(): Observable<Aluno[]> {
