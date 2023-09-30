@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
-  { path: 'home', component: IndexComponent },
+  { path: 'alunos', component: IndexComponent },
   { path: '', component: IndexComponent }
 ];
 
