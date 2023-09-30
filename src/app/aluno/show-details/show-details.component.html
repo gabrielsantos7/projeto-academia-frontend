@@ -1,18 +1,97 @@
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="nav-item" (click)="changeActive()">
-      <p class="nav-link" [ngClass]="active ? 'active' : 'disabled'" aria-current="page" href="">Endereço</p>
+      <p
+        class="nav-link"
+        [ngClass]="active ? 'active' : 'disabled'"
+        aria-current="page"
+        href=""
+      >
+        Endereço
+      </p>
     </li>
     <li class="nav-item" (click)="changeActive()">
-      <p class="nav-link" [ngClass]="!active ? 'active' : 'disabled'" href="">Avaliações</p>
+      <p class="nav-link" [ngClass]="!active ? 'active' : 'disabled'" href="">
+        Avaliações
+      </p>
     </li>
   </ul>
 
   <div *ngIf="active">
-    <p>Endereço</p>
+    <table class="table table-hover" id="tbl-endereco">
+      <tbody>
+        <tr>
+          <td class="fw-bold">ID:</td>
+          <td>Rua Exemplo, 123</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Logradouro:</td>
+          <td>Bairro de Exemplo</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Número:</td>
+          <td>Cidade de Exemplo</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Bairro:</td>
+          <td>Estado de Exemplo</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Cidade:</td>
+          <td>Estado de Exemplo</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Estado:</td>
+          <td>Estado de Exemplo</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">CEP:</td>
+          <td>Estado de Exemplo</td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary">Editar endereço</button>
   </div>
 
   <div *ngIf="!active">
-    <p>Avaliações</p>
+    <table class="table table-hover" id="tbl-avaliacoes">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Data</th>
+          <th>Peso</th>
+          <th>Altura</th>
+          <th>Medidas</th>
+          <th>Porcentagem de gordura</th>
+          <th>Observações</th>
+          <th>Editar</th>
+          <th>Apagar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let avaliacao of avaliacoes">
+          <td>{{ avaliacao.id }}</td>
+          <td>{{ avaliacao.data | date : "dd/MM/yyyy" }}</td>
+          <td>{{ avaliacao.peso }}kg</td>
+          <td>{{ avaliacao.altura * 100 }}cm</td>
+          <td>
+            {{ avaliacao.medidas[0] }} cm, {{ avaliacao.medidas[1] }} cm,
+            {{ avaliacao.medidas[2] }} cm
+          </td>
+          <td>{{ avaliacao.porcentagemGordura }}%</td>
+          <td>{{ avaliacao.observacoes }}</td>
+          <td class="text-center">
+            <button class="btn btn">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </td>
+          <td class="text-center">
+            <button class="btn">
+              <i class="bi bi-trash3-fill p-1"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
