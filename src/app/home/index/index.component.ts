@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { AlunoService } from 'src/app/aluno/aluno.service';
 import Aluno from 'src/app/shared/models/Aluno';
-import { AlunoService } from 'src/app/aluno/aluno.service';
-import Aluno from 'src/app/shared/models/Aluno';
 
 @Component({
   selector: 'app-index',
@@ -21,9 +19,5 @@ export class IndexComponent {
       this.alunos.sort((a, b) => a.nome.localeCompare(b.nome));
     });
   }
-}
-export class IndexComponent {
-  alunos: Aluno[] = [];
-  constructor(private alunoService: AlunoService) {}
 }
 
