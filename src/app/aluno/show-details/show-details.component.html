@@ -58,13 +58,26 @@
       </tbody>
     </table>
 
+    <button
+      type="button"
+      class="btn btn-secondary"
+      id="btn-close"
+      (click)="backHome()"
+    >
+      <i class="bi bi-x-lg"></i> Fechar
+    </button>
+
     <button class="btn btn-primary">
-      <i class="bi bi-pencil-square" style="color: #ffffff;"></i> Editar endereço
+      <i class="bi bi-pencil-square" style="color: #ffffff"></i> Editar endereço
     </button>
   </div>
 
   <div *ngIf="!isLoading && !active">
-    <table class="table table-hover" id="tbl-avaliacoes">
+    <table
+      *ngIf="avaliacoes.length !== 0"
+      class="table table-hover"
+      id="tbl-avaliacoes"
+    >
       <thead>
         <tr>
           <th>ID</th>
@@ -103,5 +116,26 @@
         </tr>
       </tbody>
     </table>
+
+    <div
+      *ngIf="avaliacoes.length === 0"
+      class="alert alert-danger"
+      role="alert"
+    >
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      O aluno com ID {{ alunoId }} não possui avaliações cadastradas.
+      <button class="btn btn-success" id="btn-create">
+        <i class="bi bi-plus-lg"></i>Criar
+      </button>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      id="btn-close"
+      (click)="backHome()"
+    >
+      <i class="bi bi-x-lg"></i> Fechar
+    </button>
   </div>
 </div>
