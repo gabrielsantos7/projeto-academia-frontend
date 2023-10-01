@@ -117,22 +117,15 @@
       </tbody>
     </table>
 
-    <div
+    <app-alert-info
       *ngIf="avaliacoes.length === 0"
-      class="alert alert-danger alert-dismissible fade show"
-      role="alert"
+      [message]="
+        'O aluno com ID ' +
+        alunoId +
+        ' ainda não possui avaliações cadastradas.'
+      "
     >
-      <i class="bi bi-exclamation-triangle-fill mr-2"></i>
-      O aluno com ID {{ alunoId }} ainda não possui avaliações cadastradas.
-      <button
-        class="btn btn-success"
-        id="btn-create"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      >
-        <i class="bi bi-plus-lg"></i>Criar
-      </button>
-    </div>
+    </app-alert-info>
 
     <button
       type="button"

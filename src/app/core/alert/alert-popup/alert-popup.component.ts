@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AlertPopupComponent implements OnInit {
   @Input() type: 'success' | 'error' = 'success';
-  @Input() strongMessage: string = '';
   @Input() message: string = '';
   @Input() duration: number = 5000;  // Tempo em milissegundos
 
