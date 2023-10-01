@@ -35,7 +35,7 @@ header {
     }
 }
 
-.btn__header {
+#menu > ul > li > a.btn__header {
     color: $cor_branco;
     background-color: $cor_laranja_forte;
     padding: .6rem 1.5rem;
@@ -44,6 +44,7 @@ header {
 
     &:hover {
         background-color: $cor_laranja_mais_forte;
+        color: #fff;
         transition: .35s ease-in-out;
     }
 }
