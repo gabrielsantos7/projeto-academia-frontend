@@ -11,6 +11,9 @@ import { Router } from '@angular/router';
 export class ListAllComponent {
   alunos: Aluno[] = [];
   isLoading: boolean = true;
+  alunoDeleted: boolean = false;
+  idAlunoToDelete: number | null = null;
+
   constructor(private alunoService: AlunoService, private router: Router) {}
 
   ngOnInit() {
@@ -18,6 +21,7 @@ export class ListAllComponent {
       next: (alunos: Aluno[]) => {
         this.alunos = alunos;
         this.isLoading = false;
+        console.log('Dados carregados');
       },
       error: (error) => {
         console.error('Erro ao carregar alunos:', error);
@@ -29,4 +33,14 @@ export class ListAllComponent {
   viewDetails(idAluno: number) {
     this.router.navigate(['alunos', idAluno]);
   }
+
+  defineIdAlunoToDelete(idAluno: number) {
+    this.idAlunoToDelete = idAluno;
+  }
+
+  changeAlunoDeleted(event: boolean) {
+    this.alunoDeleted = event;
+    this.alunos = this.alunos.filter(aluno => aluno.id !== this.idAlunoToDelete);
+  }
+
 }
