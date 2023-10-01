@@ -7,6 +7,7 @@ import { ListAllComponent } from './list-all/list-all.component';
 import { ShowDetailsComponent } from './show-details/show-details.component';
 import { LoaderModule } from '../core/loader/loader.module';
 import { ModalModule } from '../core/modal/modal.module';
+import { AlertModule } from '../core/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ModalModule } from '../core/modal/modal.module';
     CommonModule,
     AlunoRoutingModule,
     LoaderModule,
-    ModalModule
+    ModalModule,
+    AlertModule
   ],
   providers: [AlunoService],
   exports: [

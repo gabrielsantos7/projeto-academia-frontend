@@ -58,4 +58,12 @@
       </tr>
     </tbody>
   </table>
+
+  <app-alert
+  *ngIf="canShowAlert"
+  [type]="alertType"
+  [message]="alertMessage"
+  [duration]="5000">
+</app-alert>
+
 </div>

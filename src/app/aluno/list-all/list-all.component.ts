@@ -14,6 +14,11 @@ export class ListAllComponent {
   alunoDeleted: boolean = false;
   idAlunoToDelete: number | null = null;
 
+  alertType: 'success' | 'error' = 'success';
+  canShowAlert: boolean = false;
+  strongMessage: string = '';
+  alertMessage: string = '';
+
   constructor(private alunoService: AlunoService, private router: Router) {}
 
   ngOnInit() {
@@ -21,10 +26,9 @@ export class ListAllComponent {
       next: (alunos: Aluno[]) => {
         this.alunos = alunos;
         this.isLoading = false;
-        console.log('Dados carregados');
       },
       error: (error) => {
-        console.error('Erro ao carregar alunos:', error);
+      this.showAlert('error', `Erro ao carregar alunos: ${error}`);
         this.isLoading = false;
       },
     });
@@ -40,7 +44,14 @@ export class ListAllComponent {
 
   changeAlunoDeleted(event: boolean) {
     this.alunoDeleted = event;
+    this.showAlert('success', 'Registro removido com sucesso.');
     this.alunos = this.alunos.filter(aluno => aluno.id !== this.idAlunoToDelete);
+  }
+
+  showAlert(type: 'success' | 'error',  message: string): void {
+    this.canShowAlert = true;
+    this.alertType = type;
+    this.alertMessage = message;
   }
 
 }
