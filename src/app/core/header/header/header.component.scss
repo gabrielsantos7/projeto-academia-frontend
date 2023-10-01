@@ -1,0 +1,48 @@
+$cor_branco: #FFFFFF;
+$cor_azul_escuro: #040B25;
+$cor_laranja_forte: #FF3B26;
+$cor_laranja_mais_forte: #f81d05;
+$cor_preto_sombra: #00000040;
+
+header {
+    min-height: 2rem;
+    padding: 2.1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: $cor_azul_escuro;
+}
+
+#menu {
+    ul {
+        li {
+            display: inline;
+            padding: 1.4rem;
+        }
+    }
+
+    a {
+        list-style-type: none;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: $cor_branco;
+
+        &:hover {
+            color: $cor_laranja_forte;
+            transition: .13s ease-in-out;
+        }
+    }
+}
+
+.btn__header {
+    color: $cor_branco;
+    background-color: $cor_laranja_forte;
+    padding: .6rem 1.5rem;
+    border-radius: .4rem;
+    box-shadow: inset 2px 2px 4px $cor_preto_sombra, inset -2px -2px 4px $cor_preto_sombra;
+
+    &:hover {
+        background-color: $cor_laranja_mais_forte;
+        transition: .35s ease-in-out;
+    }
+}
