@@ -1,0 +1,149 @@
+<div class="container my-2">
+  <div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item" (click)="changeTipoConteudo('aluno')">
+        <p class="nav-link" [ngClass]="tipoConteudoAtivo === 'aluno' ? 'active' : 'disabled'">
+          Aluno
+        </p>
+      </li>
+      <li class="nav-item" (click)="changeTipoConteudo('endereco')">
+        <p class="nav-link" [ngClass]="tipoConteudoAtivo === 'endereco' ? 'active' : 'disabled'">
+          Endereço
+        </p>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="tipoConteudoAtivo === 'aluno'">
+    <form>
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nome"
+          name="nome"
+          [(ngModel)]="aluno.nome"
+          placeholder="Nome"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Telefone</label>
+        <input
+          type="text"
+          class="form-control"
+          id="telefone"
+          name="telefone"
+          [(ngModel)]="aluno.telefone"
+          placeholder="Telefone"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="dataNascimento">Data de Nascimento</label>
+        <input
+          type="date"
+          class="form-control"
+          id="dataNascimento"
+          name="dataNascimento"
+          [(ngModel)]="aluno.dataNascimento"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="tipoConteudoAtivo === 'endereco'">
+    <form>
+      <!-- <div class="form-group">
+              <label for="rua">Rua</label>
+              <input type="text" class="form-control" id="rua" name="rua" [(ngModel)]="aluno.endereco.rua" placeholder="Rua">
+            </div> -->
+
+      <div class="form-group">
+        <label for="logradouro">Logradouro</label>
+        <input
+          type="text"
+          class="form-control"
+          id="logradouro"
+          name="logradouro"
+          [(ngModel)]="aluno.endereco.logradouro"
+          placeholder="Logradouro"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="bairro">Bairro</label>
+        <input
+          type="text"
+          class="form-control"
+          id="bairro"
+          name="bairro"
+          [(ngModel)]="aluno.endereco.bairro"
+          placeholder="Bairro"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="numero">numero</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numero"
+          name="numero"
+          [(ngModel)]="aluno.endereco.numero"
+          placeholder="Número"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cidade">Cidade</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cidade"
+          name="cidade"
+          [(ngModel)]="aluno.endereco.cidade"
+          placeholder="Cidade"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <input
+          type="text"
+          class="form-control"
+          id="estado"
+          name="estado"
+          [(ngModel)]="aluno.endereco.estado"
+          placeholder="Estado"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cep">CEP</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cep"
+          name="cep"
+          [(ngModel)]="aluno.endereco.cep"
+          placeholder="CEP"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <button
+      type="button"
+      class="btn btn-secondary"
+      id="btn-close"
+      (click)="backHome()"
+    >
+      <i class="bi bi-x-lg"></i> Cancelar
+    </button>
+    <button type="button" class="btn btn-primary">Salvar</button>
+  </div>
+</div>
+

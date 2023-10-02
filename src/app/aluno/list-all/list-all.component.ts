@@ -42,9 +42,11 @@ export class ListAllComponent {
 
   editAluno(idAluno: number) {
     this.router.navigate(['alunos', idAluno, 'edit']);
-
   }
 
+  createNewAluno() {
+    this.router.navigate(['alunos', 'create']);
+  }
 
   defineIdAlunoToDelete(idAluno: number) {
     this.idAlunoToDelete = idAluno;

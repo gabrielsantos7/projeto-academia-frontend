@@ -10,12 +10,14 @@ import { ModalModule } from '../core/modal/modal.module';
 import { AlertModule } from '../core/alert/alert.module';
 import { UpdateComponent } from './update/update.component';
 import { FormsModule } from '@angular/forms';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
     ListAllComponent,
     ShowDetailsComponent,
-    UpdateComponent  // Inclua o componente aqui
+    UpdateComponent,
+    CreateComponent  // Inclua o componente aqui
   ],
   imports: [
     CommonModule,
