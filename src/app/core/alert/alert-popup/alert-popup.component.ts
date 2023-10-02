@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./alert-popup.component.scss']
 })
 export class AlertPopupComponent implements OnInit {
-  @Input() type: 'success' | 'error' = 'success';
+  @Input() type: 'success' | 'danger' = 'success';
   @Input() message: string = '';
   @Input() duration: number = 5000;  // Tempo em milissegundos
 

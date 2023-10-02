@@ -36,7 +36,10 @@
           </button>
         </td>
         <td class="text-center">
-          <button class="btn btn-success">
+          <button
+            (click)="editAluno(aluno.id)"
+            class="btn btn-success"
+          >
             <i class="bi bi-pencil-square"></i> Editar
           </button>
         </td>
@@ -54,16 +57,18 @@
             [idAlunoToDelete]="idAlunoToDelete"
             (alunoDeleted)="changeAlunoDeleted($event)"
           ></app-modal-aluno>
+
+          <!-- <app-update></app-update> -->
         </td>
       </tr>
     </tbody>
   </table>
 
   <app-alert
-  *ngIf="canShowAlert"
-  [type]="alertType"
-  [message]="alertMessage"
-  [duration]="5000">
-</app-alert>
-
+    *ngIf="canShowAlert"
+    [type]="alertType"
+    [message]="alertMessage"
+    [duration]="5000"
+  >
+  </app-alert>
 </div>

@@ -14,7 +14,9 @@ export class ListAllComponent {
   alunoDeleted: boolean = false;
   idAlunoToDelete: number | null = null;
 
-  alertType: 'success' | 'error' = 'success';
+  
+
+  alertType: 'success' | 'danger' = 'success';
   canShowAlert: boolean = false;
   strongMessage: string = '';
   alertMessage: string = '';
@@ -28,7 +30,7 @@ export class ListAllComponent {
         this.isLoading = false;
       },
       error: (error) => {
-      this.showAlert('error', `Erro ao carregar alunos: ${error}`);
+      this.showAlert('danger', `Erro ao carregar alunos: ${error}`);
         this.isLoading = false;
       },
     });
@@ -37,6 +39,12 @@ export class ListAllComponent {
   viewDetails(idAluno: number) {
     this.router.navigate(['alunos', idAluno]);
   }
+
+  editAluno(idAluno: number) {
+    this.router.navigate(['alunos', idAluno, 'edit']);
+
+  }
+
 
   defineIdAlunoToDelete(idAluno: number) {
     this.idAlunoToDelete = idAluno;
@@ -48,7 +56,7 @@ export class ListAllComponent {
     this.alunos = this.alunos.filter(aluno => aluno.id !== this.idAlunoToDelete);
   }
 
-  showAlert(type: 'success' | 'error',  message: string): void {
+  showAlert(type: 'success' | 'danger',  message: string): void {
     this.canShowAlert = true;
     this.alertType = type;
     this.alertMessage = message;

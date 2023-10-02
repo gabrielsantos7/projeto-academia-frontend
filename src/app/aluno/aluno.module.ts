@@ -8,14 +8,18 @@ import { ShowDetailsComponent } from './show-details/show-details.component';
 import { LoaderModule } from '../core/loader/loader.module';
 import { ModalModule } from '../core/modal/modal.module';
 import { AlertModule } from '../core/alert/alert.module';
+import { UpdateComponent } from './update/update.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     ListAllComponent,
-    ShowDetailsComponent  // Inclua o componente aqui
+    ShowDetailsComponent,
+    UpdateComponent  // Inclua o componente aqui
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AlunoRoutingModule,
     LoaderModule,
     ModalModule,
