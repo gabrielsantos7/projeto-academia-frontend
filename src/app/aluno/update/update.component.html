@@ -7,23 +7,25 @@
     <app-loader></app-loader>
   </div>
 
-  <ul class="nav nav-tabs">
-    <li class="nav-item" (click)="changeActive()">
-      <p
-        class="nav-link"
-        [ngClass]="active ? 'active' : 'disabled'"
-        aria-current="page"
-        href=""
-      >
-        Informações pessoais
-      </p>
-    </li>
-    <li class="nav-item" (click)="changeActive()">
-      <p class="nav-link" [ngClass]="!active ? 'active' : 'disabled'" href="">
-        Endereço
-      </p>
-    </li>
-  </ul>
+  <div *ngIf="!isLoading">
+    <ul class="nav nav-tabs">
+      <li class="nav-item" (click)="changeActive()">
+        <p
+          class="nav-link"
+          [ngClass]="active ? 'active' : 'disabled'"
+          aria-current="page"
+          href=""
+        >
+          Informações pessoais
+        </p>
+      </li>
+      <li class="nav-item" (click)="changeActive()">
+        <p class="nav-link" [ngClass]="!active ? 'active' : 'disabled'" href="">
+          Endereço
+        </p>
+      </li>
+    </ul>
+  </div>
 
   <div *ngIf="!isLoading && active">
     <form>
@@ -35,7 +37,8 @@
           id="id"
           name="id"
           [(ngModel)]="aluno.id"
-          placeholder="Nome"
+          placeholder="ID"
+          disabled="true"
         />
       </div>
 
@@ -92,18 +95,19 @@
           name="id"
           [(ngModel)]="aluno.endereco.id"
           placeholder="ID"
+          disabled="true"
         />
       </div>
 
       <div class="form-group">
-        <label for="cidade">Cidade</label>
+        <label for="logradouro">Logradouro</label>
         <input
           type="text"
           class="form-control"
-          id="cidade"
-          name="cidade"
-          [(ngModel)]="aluno.endereco.cidade"
-          placeholder="Cidade"
+          id="logradouro"
+          name="logradouro"
+          [(ngModel)]="aluno.endereco.logradouro"
+          placeholder="Logradouro"
         />
       </div>
 
@@ -132,6 +136,18 @@
       </div>
 
       <div class="form-group">
+        <label for="cidade">Cidade</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cidade"
+          name="cidade"
+          [(ngModel)]="aluno.endereco.cidade"
+          placeholder="Cidade"
+        />
+      </div>
+
+      <div class="form-group">
         <label for="estado">Estado</label>
         <input
           type="text"
@@ -142,16 +158,30 @@
           placeholder="Estado"
         />
       </div>
+
+      <div class="form-group">
+        <label for="cep">CEP</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cep"
+          name="cep"
+          [(ngModel)]="aluno.endereco.cep"
+          placeholder="CEP"
+        />
+      </div>
     </form>
   </div>
 
-  <button
-    type="button"
-    class="btn btn-secondary"
-    id="btn-close"
-    (click)="backHome()"
-  >
-    <i class="bi bi-x-lg"></i> Cancelar
-  </button>
-  <button type="button" class="btn btn-primary">Salvar</button>
+  <div *ngIf="!isLoading">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      id="btn-close"
+      (click)="backHome()"
+    >
+      <i class="bi bi-x-lg"></i> Cancelar
+    </button>
+    <button type="button" class="btn btn-primary">Salvar</button>
+  </div>
 </div>
