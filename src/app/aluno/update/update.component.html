@@ -9,28 +9,28 @@
 
   <div *ngIf="!isLoading">
     <ul class="nav nav-tabs">
-      <li class="nav-item" (click)="changeActive()">
-        <p
-          class="nav-link"
-          [ngClass]="active ? 'active' : 'disabled'"
-          aria-current="page"
-          href=""
-        >
-          Informações pessoais
+      <li class="nav-item" (click)="changeTipoConteudo('aluno')">
+        <p class="nav-link" [ngClass]="tipoConteudoAtivo === 'aluno' ? 'active' : 'disabled'">
+          Aluno
         </p>
       </li>
-      <li class="nav-item" (click)="changeActive()">
-        <p class="nav-link" [ngClass]="!active ? 'active' : 'disabled'" href="">
+      <li class="nav-item" (click)="changeTipoConteudo('endereco')">
+        <p class="nav-link" [ngClass]="tipoConteudoAtivo === 'endereco' ? 'active' : 'disabled'">
           Endereço
+        </p>
+      </li>
+      <li class="nav-item" (click)="changeTipoConteudo('avaliacoes')">
+        <p class="nav-link" [ngClass]="tipoConteudoAtivo === 'avaliacoes' ? 'active' : 'disabled'">
+          Avaliações
         </p>
       </li>
     </ul>
   </div>
 
-  <div *ngIf="!isLoading && active">
+  <div *ngIf="!isLoading && tipoConteudoAtivo === 'aluno'">
     <form>
       <div class="form-group">
-        <label for="nome">ID</label>
+        <label for="id">ID</label>
         <input
           type="number"
           class="form-control"
@@ -79,7 +79,7 @@
     </form>
   </div>
 
-  <div *ngIf="!isLoading && !active">
+  <div *ngIf="!isLoading && tipoConteudoAtivo === 'endereco'">
     <form>
       <!-- <div class="form-group">
               <label for="rua">Rua</label>
@@ -173,6 +173,10 @@
     </form>
   </div>
 
+  <div *ngIf="!isLoading && tipoConteudoAtivo === 'avaliacoes'">
+    avaliações
+  </div>
+    
   <div *ngIf="!isLoading">
     <button
       type="button"

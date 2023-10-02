@@ -27,7 +27,8 @@ export class UpdateComponent implements OnInit {
     avaliacoes: []
   };
 
-  active: boolean = true;
+  tipoConteudoAtivo: 'aluno'|'endereco'|'avaliacoes' = 'aluno';
+  tiposConteudo: [string, string, string] = ['aluno','endereco', 'avaliacoes']
   isLoading: boolean = true;
 
   alunoId: number = 17;
@@ -55,9 +56,9 @@ export class UpdateComponent implements OnInit {
       });
     }
     
-  changeActive() {
-    this.active = !this.active;
-  }
+    changeTipoConteudo(tipo: 'aluno'|'endereco'|'avaliacoes') {
+      this.tipoConteudoAtivo = tipo;
+    }
 
   backHome() {
     this.router.navigateByUrl('/alunos');
