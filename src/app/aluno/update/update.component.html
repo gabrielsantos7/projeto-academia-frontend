@@ -1,4 +1,4 @@
-<div class="container my-2">
+<div class="container my-5">
   <div
     *ngIf="isLoading"
     class="container d-flex justify-content-center align-items-center"
@@ -27,7 +27,7 @@
     </ul>
   </div>
 
-  <div *ngIf="!isLoading && tipoConteudoAtivo === 'aluno'">
+  <div *ngIf="!isLoading && tipoConteudoAtivo === 'aluno'" >
     <form>
       <div class="form-group">
         <label for="id">ID</label>
@@ -186,6 +186,6 @@
     >
       <i class="bi bi-x-lg"></i> Cancelar
     </button>
-    <button type="button" class="btn btn-primary">Salvar</button>
+    <button (click)="saveAluno()" type="button" class="btn btn-primary">Salvar</button>
   </div>
 </div>

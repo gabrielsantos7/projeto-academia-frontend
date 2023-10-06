@@ -63,4 +63,9 @@ export class UpdateComponent implements OnInit {
   backHome() {
     this.router.navigateByUrl('/alunos');
   }
+
+  saveAluno() {
+    this.alunoService.updateAluno(this.aluno);
+    this.backHome();
+  }
 }

@@ -11,8 +11,8 @@ export class AlunoService {
 
   constructor(private http: HttpClient) {
     //this.apiUrl = 'https://backend-academia-production.up.railway.app/';
-    // this.apiUrl = 'http://localhost:8080'
-    this.apiUrl = 'http://localhost:3000'
+    this.apiUrl = 'http://localhost:8080'
+    // this.apiUrl = 'http://localhost:3000'
   }
 
   getAlunos(): Observable<Aluno[]> {
@@ -29,7 +29,7 @@ export class AlunoService {
 
   updateAluno(alunoAtualizado: Aluno): Observable<void> {
     return this.http.put<void>(
-      `${this.apiUrl}/alunos/${alunoAtualizado.id}`,
+      `${this.apiUrl}/alunos`,
       alunoAtualizado
     );
   }

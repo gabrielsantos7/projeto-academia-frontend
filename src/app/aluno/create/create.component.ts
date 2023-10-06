@@ -43,4 +43,9 @@ export class CreateComponent {
   backHome() {
     this.router.navigateByUrl('/alunos');
   }
+
+  saveAluno() {
+    this.alunoService.postAluno(this.aluno);
+    this.backHome();
+  }
 }
