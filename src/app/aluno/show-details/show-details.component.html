@@ -1,17 +1,32 @@
 <div class="container my-2">
   <ul class="nav nav-tabs">
-    <li class="nav-item" (click)="changeActive()">
+    <li class="nav-item" (click)="changeActive('aluno')">
       <p
         class="nav-link"
-        [ngClass]="active ? 'active' : 'disabled'"
+        [ngClass]="tipoConteudoAtivo === 'aluno' ? 'active' : 'disabled'"
+        aria-current="page"
+        href=""
+      >
+        Dados pessoais
+      </p>
+    </li>
+    <li class="nav-item" (click)="changeActive('endereco')">
+      <p
+        class="nav-link"
+        [ngClass]="tipoConteudoAtivo === 'endereco' ? 'active' : 'disabled'"
         aria-current="page"
         href=""
       >
         Endereço
       </p>
     </li>
-    <li class="nav-item" (click)="changeActive()">
-      <p class="nav-link" [ngClass]="!active ? 'active' : 'disabled'" href="">
+    <li class="nav-item" (click)="changeActive('avaliacoes')">
+      <p
+        class="nav-link"
+        [ngClass]="tipoConteudoAtivo === 'avaliacoes' ? 'active' : 'disabled'"
+        aria-current="page"
+        href=""
+      >
         Avaliações
       </p>
     </li>
@@ -24,36 +39,69 @@
   >
     <app-loader></app-loader>
   </div>
-  <div *ngIf="!isLoading && active">
+
+  <div *ngIf="!isLoading && tipoConteudoAtivo === 'aluno'">
     <table class="table table-hover" id="tbl-endereco">
       <tbody>
         <tr>
           <td class="fw-bold">ID:</td>
-          <td>{{ endereco.id }}</td>
+          <td>{{ aluno.id }}</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Nome:</td>
+          <td>{{ aluno.nome }}</td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Data de Nascimento:</td>
+          <td>{{ aluno.dataNascimento }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      id="btn-close"
+      (click)="backHome()"
+    >
+      <i class="bi bi-x-lg"></i> Fechar
+    </button>
+
+    <button class="btn btn-primary">
+      <i class="bi bi-pencil-square" style="color: #ffffff"></i> Editar informações pessoais
+    </button>
+  </div>
+
+  <div *ngIf="!isLoading && tipoConteudoAtivo === 'endereco'">
+    <table class="table table-hover" id="tbl-endereco">
+      <tbody>
+        <tr>
+          <td class="fw-bold">ID:</td>
+          <td>{{ aluno.endereco.id }}</td>
         </tr>
         <tr>
           <td class="fw-bold">Logradouro:</td>
-          <td>{{ endereco.logradouro }}</td>
+          <td>{{ aluno.endereco.logradouro }}</td>
         </tr>
         <tr>
           <td class="fw-bold">Número:</td>
-          <td>{{ endereco.numero }}</td>
+          <td>{{ aluno.endereco.numero }}</td>
         </tr>
         <tr>
           <td class="fw-bold">Bairro:</td>
-          <td>{{ endereco.bairro }}</td>
+          <td>{{ aluno.endereco.bairro }}</td>
         </tr>
         <tr>
           <td class="fw-bold">Cidade:</td>
-          <td>{{ endereco.cidade }}</td>
+          <td>{{ aluno.endereco.cidade }}</td>
         </tr>
         <tr>
           <td class="fw-bold">Estado:</td>
-          <td>{{ endereco.estado }}</td>
+          <td>{{ aluno.endereco.estado }}</td>
         </tr>
         <tr>
           <td class="fw-bold">CEP:</td>
-          <td>{{ endereco.cep }}</td>
+          <td>{{ aluno.endereco.cep }}</td>
         </tr>
       </tbody>
     </table>
@@ -72,9 +120,9 @@
     </button>
   </div>
 
-  <div *ngIf="!isLoading && !active">
+  <div *ngIf="!isLoading && tipoConteudoAtivo === 'avaliacoes'">
     <table
-      *ngIf="avaliacoes && avaliacoes.length !== 0"
+      *ngIf="aluno.avaliacoes && aluno.avaliacoes.length !== 0"
       class="table table-hover"
       id="tbl-avaliacoes"
     >
@@ -92,7 +140,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let avaliacao of avaliacoes">
+        <tr *ngFor="let avaliacao of aluno.avaliacoes">
           <td>{{ avaliacao.id }}</td>
           <td>{{ avaliacao.data | date : "dd/MM/yyyy" }}</td>
           <td>{{ avaliacao.peso }}kg</td>
@@ -118,7 +166,7 @@
     </table>
 
     <app-alert-info
-    *ngIf="!avaliacoes || avaliacoes.length === 0"
+      *ngIf="!aluno.avaliacoes || aluno.avaliacoes.length === 0"
       [message]="
         'O aluno com ID ' +
         alunoId +

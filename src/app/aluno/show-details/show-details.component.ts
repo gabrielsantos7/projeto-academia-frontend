@@ -5,34 +5,41 @@ import { AlunoService } from '../aluno.service';
 import Aluno from 'src/app/shared/models/Aluno';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-show-details',
   templateUrl: './show-details.component.html',
   styleUrls: ['./show-details.component.scss'],
 })
 export class ShowDetailsComponent implements OnInit {
-  active: boolean = true;
+  tipoConteudoAtivo: string = 'aluno';
   isLoading: boolean = true;
   alunoId: number = 0;
-  avaliacoes: Avaliacao[] = [];
-  endereco: Endereco = {
+  aluno: Aluno = {
     id: 0,
-    logradouro: '',
-    numero: '',
-    bairro: '',
-    cidade: '',
-    estado: '',
-    cep: '',
+    nome: '',
+    telefone: '',
+    dataNascimento: new Date(),
+    endereco: {
+      id: 0,
+      logradouro: '',
+      numero: '',
+      bairro: '',
+      cidade: '',
+      estado: '',
+      cep: '',
+    },
+    avaliacoes: []
   };
 
-  changeActive() {
-    this.active = !this.active;
+  changeActive(tipo: string) {
+    this.tipoConteudoAtivo = tipo;
   }
 
   constructor(
     private alunoService: AlunoService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -40,8 +47,7 @@ export class ShowDetailsComponent implements OnInit {
     this.alunoId = idAluno;
     this.alunoService.getAlunoById(idAluno).subscribe({
       next: (aluno: Aluno) => {
-        this.endereco = aluno.endereco;
-        this.avaliacoes = aluno.avaliacoes;
+        this.aluno = aluno;
         this.isLoading = false;
       },
       error: (error) => {
