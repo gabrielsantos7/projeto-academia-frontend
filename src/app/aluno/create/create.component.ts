@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import Aluno from 'src/app/shared/models/Aluno';
 import { AlunoService } from '../aluno.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -9,22 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  aluno: Aluno = {
-    id: 0,
-    nome: '',
-    telefone: '',
-    dataNascimento: new Date(),
-    endereco: {
-      id: 0,
-      logradouro: '',
-      numero: '',
-      bairro: '',
-      cidade: '',
-      estado: '',
-      cep: '',
-    },
-    avaliacoes: [],
-  };
+  form!: FormGroup;
 
   tipoConteudoAtivo: 'aluno' | 'endereco' = 'aluno';
   tiposConteudo: [string, string] = ['aluno', 'endereco'];
@@ -36,6 +22,25 @@ export class CreateComponent {
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+    this.form = new FormGroup({
+    nome: new FormControl('', [Validators.required]),
+    telefone: new FormControl('', Validators.required),
+    dataNascimento: new FormControl('', Validators.required),
+    logradouro: new FormControl('', Validators.required),
+    bairro: new FormControl('', Validators.required),
+    numero: new FormControl('', Validators.required),
+    cidade: new FormControl('', Validators.required),
+    estado: new FormControl('', Validators.required),
+    cep: new FormControl('', Validators.required),
+    });
+
+  }
+
+  get f(){
+    return this.form.controls;
+  }
+
   changeTipoConteudo(tipo: 'aluno' | 'endereco') {
     this.tipoConteudoAtivo = tipo;
   }
@@ -44,8 +49,12 @@ export class CreateComponent {
     this.router.navigateByUrl('/alunos');
   }
 
-  saveAluno() {
-    this.alunoService.postAluno(this.aluno);
-    this.backHome();
+  submit(){
+    console.log(this.form.value);
+    this.alunoService.create(this.form.value).subscribe(res => {
+         alert('Aluno salvo com sucesso!');
+         this.backHome();
+    })
+
   }
 }
