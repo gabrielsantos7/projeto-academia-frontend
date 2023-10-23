@@ -15,54 +15,142 @@
   </div> -->
 
   <!-- <div *ngIf="tipoConteudoAtivo === 'aluno'"> -->
-  <form [formGroup]="form" (ngSubmit)="submit()" class="p-5 w-75">
-    <div class="form-group mb-3">
-      <label for="nome">Nome</label>
-      <input
-        formControlName="nome"
-        type="text"
-        class="form-control"
-        id="nome"
-        name="nome"
-        placeholder="Nome"
-      />
-    </div>
+    <form [formGroup]="alunoForm" (ngSubmit)="submit()" class="p-5 w-75">
+      <div id="inputs-aluno" *ngIf="tipoConteudoAtivo === 'aluno'">
+        <div class="form-group mb-3">
+          <label for="nome">Nome</label>
+          <input
+            formControlName="nome"
+            type="text"
+            class="form-control"
+            id="nome"
+            name="nome"
+            placeholder="Nome"
+          />
+        </div>
 
-    <div class="form-group mb-3">
-      <label for="telefone">Telefone</label>
-      <input
-        formControlName="telefone"
-        type="text"
-        class="form-control"
-        id="telefone"
-        name="telefone"
-        placeholder="Telefone"
-      />
-    </div>
+        <div class="form-group mb-3">
+          <label for="telefone">Telefone</label>
+          <input
+            formControlName="telefone"
+            type="text"
+            class="form-control"
+            id="telefone"
+            name="telefone"
+            placeholder="Telefone"
+          />
+        </div>
 
-    <div class="form-group">
-      <label for="dataNascimento">Data de Nascimento</label>
-      <input
-        formControlName="dataNascimento"
-        type="date"
-        class="form-control"
-        id="dataNascimento"
-        name="dataNascimento"
-      />
-    </div>
-    <div>
-      <button
-        type="button"
-        class="btn btn-secondary"
-        id="btn-close"
-        (click)="backHome()"
-      >
-        <i class="bi bi-x-lg"></i> Cancelar
-      </button>
-      <button type="submit" class="btn btn-primary">Salvar</button>
-    </div>
-  </form>
-</div>
+        <div class="form-group">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input
+            formControlName="dataNascimento"
+            type="date"
+            class="form-control"
+            id="dataNascimento"
+            name="dataNascimento"
+          />
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="btn-close"
+          (click)="backHome()"
+        >
+          <i class="bi bi-x-lg"></i> Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark"
+          (click)="changeTipoConteudo('endereco')"
+        >
+          Próximo
+        </button>
+      </div>
+
+      <div formGroupName="endereco" id="inputs-endereco" *ngIf="tipoConteudoAtivo === 'endereco'">
+        <div class="form-group">
+          <label for="logradouro">Logradouro</label>
+          <input
+            formControlName="logradouro"
+            type="text"
+            class="form-control"
+            id="logradouro"
+            name="logradouro"
+            placeholder="Logradouro"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="bairro">Bairro</label>
+          <input
+            formControlName="bairro"
+            type="text"
+            class="form-control"
+            id="bairro"
+            name="bairro"
+            placeholder="Bairro"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="numero">Número</label>
+          <input
+            formControlName="numero"
+            type="text"
+            class="form-control"
+            id="numero"
+            name="numero"
+            placeholder="Número"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="cidade">Cidade</label>
+          <input
+            formControlName="cidade"
+            type="text"
+            class="form-control"
+            id="cidade"
+            name="cidade"
+            placeholder="Cidade"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <input
+            formControlName="estado"
+            type="text"
+            class="form-control"
+            id="estado"
+            name="estado"
+            placeholder="Estado"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="cep">CEP</label>
+          <input
+            formControlName="cep"
+            type="text"
+            class="form-control"
+            id="cep"
+            name="cep"
+            placeholder="CEP"
+          />
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-dark"
+          (click)="changeTipoConteudo('aluno')"
+        >
+          Anterior
+        </button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
 
 <!-- <div *ngIf="tipoConteudoAtivo === 'endereco'">
   <form>
@@ -71,77 +159,7 @@
               <input type="text" class="form-control" id="rua" name="rua" [(ngModel)]="aluno.endereco.rua" placeholder="Rua">
             </div>
 
-    <div class="form-group">
-      <label for="logradouro">Logradouro</label>
-      <input
-        formControlName="logradouro"
-        type="text"
-        class="form-control"
-        id="logradouro"
-        name="logradouro"
-        placeholder="Logradouro"
-      />
-    </div>
 
-    <div class="form-group">
-      <label for="bairro">Bairro</label>
-      <input
-        formControlName="bairro"
-        type="text"
-        class="form-control"
-        id="bairro"
-        name="bairro"
-        placeholder="Bairro"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="numero">numero</label>
-      <input
-        formControlName="numero"
-        type="text"
-        class="form-control"
-        id="numero"
-        name="numero"
-        placeholder="Número"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="cidade">Cidade</label>
-      <input
-        formControlName="cidade"
-        type="text"
-        class="form-control"
-        id="cidade"
-        name="cidade"
-        placeholder="Cidade"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="estado">Estado</label>
-      <input
-        formControlName="estado"
-        type="text"
-        class="form-control"
-        id="estado"
-        name="estado"
-        placeholder="Estado"
-      />
-    </div>
-
-    <div class="form-group">
-      <label for="cep">CEP</label>
-      <input
-        formControlName="cep"
-        type="text"
-        class="form-control"
-        id="cep"
-        name="cep"
-        placeholder="CEP"
-      />
-    </div>
     <div>
       <button
         type="button"

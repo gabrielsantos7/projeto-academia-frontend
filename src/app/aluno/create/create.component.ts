@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import Aluno from 'src/app/shared/models/Aluno';
 import { AlunoService } from '../aluno.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -10,35 +9,33 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent {
-  form!: FormGroup;
-
+  alunoForm: FormGroup;
   tipoConteudoAtivo: 'aluno' | 'endereco' = 'aluno';
   tiposConteudo: [string, string] = ['aluno', 'endereco'];
-  isLoading: boolean = true;
 
   constructor(
     private alunoService: AlunoService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.form = new FormGroup({
-    nome: new FormControl('', [Validators.required]),
-    telefone: new FormControl('', Validators.required),
-    dataNascimento: new FormControl('', Validators.required),
-    logradouro: new FormControl('', Validators.required),
-    bairro: new FormControl('', Validators.required),
-    numero: new FormControl('', Validators.required),
-    cidade: new FormControl('', Validators.required),
-    estado: new FormControl('', Validators.required),
-    cep: new FormControl('', Validators.required),
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.alunoForm = this.fb.group({
+      nome: ['', Validators.required],
+      telefone: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
+      endereco: this.fb.group({
+        logradouro: ['', Validators.required],
+        numero: ['', Validators.required],
+        bairro: ['', Validators.required],
+        cidade: ['', Validators.required],
+        estado: ['', Validators.required],
+        cep: ['', Validators.required],
+      }),
     });
-
   }
 
-  get f(){
-    return this.form.controls;
+  get f() {
+    return this.alunoForm.controls;
   }
 
   changeTipoConteudo(tipo: 'aluno' | 'endereco') {
@@ -49,12 +46,11 @@ export class CreateComponent {
     this.router.navigateByUrl('/alunos');
   }
 
-  submit(){
-    console.log(this.form.value);
-    this.alunoService.create(this.form.value).subscribe(res => {
-         alert('Aluno salvo com sucesso!');
-         this.backHome();
-    })
-
+  submit() {
+    console.log(this.alunoForm.value); 
+    this.alunoService.create(this.alunoForm.value).subscribe((res) => {
+      alert('Aluno salvo com sucesso!');
+      this.backHome();
+    });
   }
 }

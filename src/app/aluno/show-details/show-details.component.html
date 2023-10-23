@@ -74,7 +74,7 @@
 
   <div *ngIf="!isLoading && !active">
     <table
-      *ngIf="avaliacoes.length !== 0"
+      *ngIf="avaliacoes && avaliacoes.length !== 0"
       class="table table-hover"
       id="tbl-avaliacoes"
     >
@@ -118,7 +118,7 @@
     </table>
 
     <app-alert-info
-      *ngIf="avaliacoes.length === 0"
+    *ngIf="!avaliacoes || avaliacoes.length === 0"
       [message]="
         'O aluno com ID ' +
         alunoId +
