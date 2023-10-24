@@ -24,7 +24,7 @@ export class CreateComponent {
       telefone: ['', Validators.required],
       dataNascimento: ['', Validators.required],
       endereco: this.fb.group({
-        logradouro: ['', Validators.required],
+        rua: ['', Validators.required],
         numero: ['', Validators.required],
         bairro: ['', Validators.required],
         cidade: ['', Validators.required],
@@ -47,7 +47,7 @@ export class CreateComponent {
   }
 
   submit() {
-    console.log(this.alunoForm.value); 
+    console.log(this.alunoForm.value);
     this.alunoService.create(this.alunoForm.value).subscribe((res) => {
       alert('Aluno salvo com sucesso!');
       this.backHome();

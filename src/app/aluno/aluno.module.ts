@@ -12,13 +12,15 @@ import { UpdateComponent } from './update/update.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateComponent } from './create/create.component';
+import { TelefoneMaskDirective } from '../shared/models/directives/telefone-mask.directive';
 
 @NgModule({
   declarations: [
     ListAllComponent,
     ShowDetailsComponent,
     UpdateComponent,
-    CreateComponent  // Inclua o componente aqui
+    CreateComponent,
+    TelefoneMaskDirective
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,7 @@ import { CreateComponent } from './create/create.component';
     AlunoRoutingModule,
     LoaderModule,
     ModalModule,
-    AlertModule
+    AlertModule,
   ],
   providers: [AlunoService],
   exports: [
