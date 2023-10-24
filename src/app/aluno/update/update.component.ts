@@ -17,7 +17,7 @@ export class UpdateComponent implements OnInit {
     dataNascimento: new Date(),
     endereco: {
       id: 0,
-      logradouro: '',
+      rua: '',
       numero: '',
       bairro: '',
       cidade: '',
@@ -42,7 +42,7 @@ export class UpdateComponent implements OnInit {
       this.route.paramMap.subscribe(params => {
         const idAluno = Number(params.get('id'));
         this.alunoId = idAluno;
-    
+
         this.alunoService.getAlunoById(idAluno).subscribe({
           next: (aluno: Aluno) => {
             this.aluno = aluno;
@@ -55,7 +55,7 @@ export class UpdateComponent implements OnInit {
         });
       });
     }
-    
+
     changeTipoConteudo(tipo: 'aluno'|'endereco'|'avaliacoes') {
       this.tipoConteudoAtivo = tipo;
     }

@@ -19,9 +19,7 @@
         <th>Nome</th>
         <th>Telefone</th>
         <th>Data de Nascimento</th>
-        <th class="text-center">Ação 1</th>
-        <th class="text-center">Ação 2</th>
-        <th class="text-center">Ação 3</th>
+        <th class="text-center">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -30,35 +28,31 @@
         <td>{{ aluno.nome }}</td>
         <td>{{ aluno.telefone }}</td>
         <td>{{ aluno.dataNascimento | date : "dd/MM/yyyy" }}</td>
+
         <td class="text-center">
-          <button class="btn btn-primary" (click)="viewDetails(aluno.id)">
+          <button class="btn btn-primary m-1" (click)="viewDetails(aluno.id)">
             <i class="bi bi-eye-fill"></i> Ver mais
           </button>
-        </td>
-        <td class="text-center">
+
           <button
             (click)="editAluno(aluno.id)"
-            class="btn btn-success"
+            class="btn btn-success m-1"
           >
             <i class="bi bi-pencil-square"></i> Editar
           </button>
-        </td>
-        <td class="text-center">
+
           <button
-            class="btn btn-danger"
+            class="btn btn-danger m-1"
             data-bs-toggle="modal"
             data-bs-target="#modalAluno"
             (click)="defineIdAlunoToDelete(aluno.id)"
           >
             <i class="bi bi-trash3-fill p-1"></i>Apagar
           </button>
-
           <app-modal-aluno
             [idAlunoToDelete]="idAlunoToDelete"
             (alunoDeleted)="changeAlunoDeleted($event)"
           ></app-modal-aluno>
-
-          <!-- <app-update></app-update> -->
         </td>
       </tr>
     </tbody>

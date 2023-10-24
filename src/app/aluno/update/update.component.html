@@ -100,14 +100,14 @@
       </div>
 
       <div class="form-group">
-        <label for="logradouro">Logradouro</label>
+        <label for="rua">Rua</label>
         <input
           type="text"
           class="form-control"
-          id="logradouro"
-          name="logradouro"
-          [(ngModel)]="aluno.endereco.logradouro"
-          placeholder="Logradouro"
+          id="rua"
+          name="rua"
+          [(ngModel)]="aluno.endereco.rua"
+          placeholder="rua"
         />
       </div>
 
@@ -176,7 +176,7 @@
   <div *ngIf="!isLoading && tipoConteudoAtivo === 'avaliacoes'">
     avaliações
   </div>
-    
+
   <div *ngIf="!isLoading">
     <button
       type="button"

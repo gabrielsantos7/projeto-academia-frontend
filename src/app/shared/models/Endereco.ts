@@ -1,6 +1,6 @@
 export default interface Endereco {
   id: number;
-  logradouro: string;
+  rua: string;
   numero: string;
   bairro: string;
   cidade: string;

@@ -22,7 +22,7 @@ export class ShowDetailsComponent implements OnInit {
     dataNascimento: new Date(),
     endereco: {
       id: 0,
-      logradouro: '',
+      rua: '',
       numero: '',
       bairro: '',
       cidade: '',
