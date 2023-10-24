@@ -53,7 +53,7 @@
         </tr>
         <tr>
           <td class="fw-bold">Data de Nascimento:</td>
-          <td>{{ aluno.dataNascimento }}</td>
+          <td>{{ aluno.dataNascimento | date : "dd/MM/yyyy" }}</td>
         </tr>
       </tbody>
     </table>

@@ -5,13 +5,14 @@ import { ShowDetailsComponent } from '../aluno/show-details/show-details.compone
 import { ListAllComponent } from '../aluno/list-all/list-all.component';
 import { UpdateComponent } from '../aluno/update/update.component';
 import { CreateComponent } from '../aluno/create/create.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'alunos', component: ListAllComponent },
   { path: 'alunos/create', component: CreateComponent },
   { path: 'alunos/:id', component: ShowDetailsComponent },
   { path: 'alunos/:id/edit', component: UpdateComponent },
-  { path: '', component: IndexComponent }
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({

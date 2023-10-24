@@ -7,10 +7,12 @@ import { FooterModule } from '../core/footer/footer.module';
 import { HeaderModule } from '../core/header/header.module';
 import { AlunoService } from '../aluno/aluno.service';
 import { AlunoModule } from '../aluno/aluno.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    IndexComponent
+    IndexComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
