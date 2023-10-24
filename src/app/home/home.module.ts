@@ -8,6 +8,7 @@ import { HeaderModule } from '../core/header/header.module';
 import { AlunoService } from '../aluno/aluno.service';
 import { AlunoModule } from '../aluno/aluno.module';
 import { HomeComponent } from './home/home.component';
+import { AvaliacoesModule } from '../avaliacoes/avaliacoes.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     HomeRoutingModule,
     HeaderModule,
     FooterModule,
-    AlunoModule
+    AlunoModule,
+    AvaliacoesModule
   ],
   providers: [
     AlunoService
