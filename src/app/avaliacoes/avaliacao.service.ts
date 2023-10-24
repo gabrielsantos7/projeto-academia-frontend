@@ -10,7 +10,7 @@ export class AvaliacaoService {
   private apiUrl: string;
 
   constructor(private http: HttpClient) {
-    this.apiUrl = 'https://backend-academia-production.up.railway.app/';
+    this.apiUrl = 'http://localhost:8080';
   }
 
   // Método para buscar todas as avaliações

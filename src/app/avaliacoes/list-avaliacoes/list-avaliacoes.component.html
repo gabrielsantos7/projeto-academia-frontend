@@ -1,0 +1,42 @@
+<table
+      class="table table-hover"
+      id="tbl-avaliacoes"
+    >
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Data</th>
+          <th>Peso</th>
+          <th>Altura</th>
+          <th>Medidas</th>
+          <th>Porcentagem de gordura</th>
+          <th>Observações</th>
+          <th>Editar</th>
+          <th>Apagar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let avaliacao of avaliacoes">
+          <td>{{ avaliacao.id }}</td>
+          <td>{{ avaliacao.data | date : "dd/MM/yyyy" }}</td>
+          <td>{{ avaliacao.peso }}kg</td>
+          <td>{{ avaliacao.altura * 100 }}cm</td>
+          <td>
+            {{ avaliacao.medidas[0] }} cm, {{ avaliacao.medidas[1] }} cm,
+            {{ avaliacao.medidas[2] }} cm
+          </td>
+          <td>{{ avaliacao.porcentagemGordura }}%</td>
+          <td>{{ avaliacao.observacoes }}</td>
+          <td class="text-center">
+            <button class="btn btn">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </td>
+          <td class="text-center">
+            <button class="btn">
+              <i class="bi bi-trash3-fill p-1"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
