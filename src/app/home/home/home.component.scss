@@ -1,0 +1,41 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+section #first {
+    background: url("../../../assets/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    font-weight: bold;
+    margin-top: -1rem;
+}
+
+.firstText {
+    color: #fff;
+    margin: 7rem;
+}
+
+.firstText > h1 {
+    font-size: 2.7rem;
+}
+
+.firstText > p {
+    padding: .6rem;
+    border: .2rem solid #FF3B26;
+    border-radius: .6rem;
+    width: 35%;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.firstText > p:hover {
+    cursor: pointer;
+    background-color: #FF3B26;
+    border: .2rem solid #fff;
+    transition: .4s ease-in-out;
+}
