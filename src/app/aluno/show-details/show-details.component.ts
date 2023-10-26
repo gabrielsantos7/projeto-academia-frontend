@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Avaliacao from 'src/app/shared/models/Avaliacao.model';
 import Endereco from 'src/app/shared/models/Endereco.model';
 import { AlunoService } from '../services/aluno.service';
 import Aluno from 'src/app/shared/models/Aluno.model';
@@ -61,12 +60,11 @@ export class ShowDetailsComponent implements OnInit {
 
   formatarEndereco() {
     const endereco = this.aluno.endereco;
-    this.enderecoFormatado.push(`${endereco.rua}, ${endereco.numero}.`);
+    this.enderecoFormatado.push(`Rua ${endereco.rua}, ${endereco.numero}.`);
     this.enderecoFormatado.push(
       `Bairro ${endereco.bairro}, ${endereco.cidade}, ${endereco.estado}.`
     );
     this.enderecoFormatado.push(`CEP: ${endereco.cep}`);
-    // this.enderecoFormatado = `${endereco.rua}, ${endereco.numero}. Bairro ${endereco.bairro}, ${endereco.cidade}, ${endereco.estado}. CEP: ${endereco.cep}`;
   }
 
   backHome() {
