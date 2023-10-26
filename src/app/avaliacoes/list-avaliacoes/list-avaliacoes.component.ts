@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { AvaliacaoService } from '../avaliacao.service';
-import Avaliacao from 'src/app/shared/models/Avaliacao';
+import Avaliacao from 'src/app/shared/models/Avaliacao.model';
 
 @Component({
   selector: 'app-list-avaliacoes',
   templateUrl: './list-avaliacoes.component.html',
-  styleUrls: ['./list-avaliacoes.component.scss']
+  styleUrls: ['./list-avaliacoes.component.scss'],
 })
 export class ListAvaliacoesComponent {
   avaliacoes: Avaliacao[] = [];
-  constructor(private avaliacaoService: AvaliacaoService){}
+  constructor(private avaliacaoService: AvaliacaoService) {}
 
   ngOnInit() {
     this.avaliacaoService.getAvaliacoes().subscribe({
@@ -17,7 +17,7 @@ export class ListAvaliacoesComponent {
         this.avaliacoes = avaliacoes;
       },
       error: (error) => {
-      console.log(error);
+        console.log(error);
       },
     });
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import Aluno from 'src/app/shared/models/Aluno';
+import Aluno from 'src/app/shared/models/Aluno.model';
 import { AlunoService } from '../services/aluno.service';
 import { Router } from '@angular/router';
 

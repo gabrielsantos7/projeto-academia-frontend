@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import Avaliacao from '../shared/models/Avaliacao';
+import Avaliacao from '../shared/models/Avaliacao.model';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +25,10 @@ export class AvaliacaoService {
 
   // Método para buscar todas as avaliações de um aluno por ID de aluno
   getAvaliacoesByAluno(idAluno: number): Observable<Avaliacao[]> {
-   return this.http.get<Avaliacao[]>(`${this.apiUrl}/avaliacoes/aluno/${idAluno}`);
- }
+    return this.http.get<Avaliacao[]>(
+      `${this.apiUrl}/avaliacoes/aluno/${idAluno}`
+    );
+  }
 
   // Método para criar uma nova avaliação
   postAvaliacao(avaliacao: Avaliacao): Observable<Avaliacao> {
@@ -45,5 +47,4 @@ export class AvaliacaoService {
   deleteAvaliacao(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/avaliacoes/${id}`);
   }
-
 }

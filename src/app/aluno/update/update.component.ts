@@ -1,4 +1,4 @@
-import Aluno from 'src/app/shared/models/Aluno';
+import Aluno from 'src/app/shared/models/Aluno.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlunoService } from '../services/aluno.service';

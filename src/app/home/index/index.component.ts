@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlunoService } from 'src/app/aluno/services/aluno.service';
-import Aluno from 'src/app/shared/models/Aluno';
+import Aluno from 'src/app/shared/models/Aluno.model';
 
 @Component({
   selector: 'app-index',

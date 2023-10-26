@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import Aluno from '../../shared/models/Aluno';
+import Aluno from '../../shared/models/Aluno.model';
 
 @Injectable({
   providedIn: 'root',

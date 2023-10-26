@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import Avaliacao from 'src/app/shared/models/Avaliacao';
-import Endereco from 'src/app/shared/models/Endereco';
+import Avaliacao from 'src/app/shared/models/Avaliacao.model';
+import Endereco from 'src/app/shared/models/Endereco.model';
 import { AlunoService } from '../services/aluno.service';
-import Aluno from 'src/app/shared/models/Aluno';
+import Aluno from 'src/app/shared/models/Aluno.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
