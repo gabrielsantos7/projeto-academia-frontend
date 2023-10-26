@@ -1,16 +1,15 @@
 <header id="cabecalho">
     <section id="logo">
         <a href="index.html">
-            <img src="../../../../assets/logo.png" alt="D+ SERVIÇOS">
+            <img src="../../../../assets/logo.png" alt="Maromba's GYM">
         </a>
     </section>
 
     <nav id="menu">
         <ul>
-            <li><a href="#" target="_self" rel="author">Avaliação</a></li>
-            <li><a href="#" target="_self" rel="author">Funcionário</a></li>
-            <li><a href="#" target="_self" rel="author">Usuário</a></li>
-            <li><a href="#" target="_self" rel="author" class="btn__header">Login</a></li>
+            <li><a [routerLink]="'/avaliacoes'">Avaliação</a></li>
+            <li><a [routerLink]="'/alunos'">Alunos</a></li>
+            <li><a [routerLink]="'/'" class="btn__header">Login</a></li>
         </ul>
     </nav>
 </header>
