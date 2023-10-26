@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Cidade } from 'src/app/shared/models/Cidade.model';
+import { Estado } from 'src/app/shared/models/Estado.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +12,11 @@ export class IbgeService {
 
   constructor(private http: HttpClient) {}
 
-  getEstados() {
-    return this.http.get(`${this.apiUrl}/estados`);
+  getEstados(): Observable<Estado[]> {
+    return this.http.get<Estado[]>(`${this.apiUrl}estados`);
   }
 
-  getCidadesByEstado(estadoId: number) {
-    return this.http.get(`${this.apiUrl}/estados/${estadoId}/municipios`);
+  getCidadesByEstado(uf: string): Observable<Cidade[]> {
+    return this.http.get<Cidade[]>(`${this.apiUrl}estados/${uf}/municipios`);
   }
 }
