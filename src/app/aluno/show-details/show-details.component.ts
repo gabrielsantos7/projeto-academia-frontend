@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Avaliacao from 'src/app/shared/models/Avaliacao';
 import Endereco from 'src/app/shared/models/Endereco';
-import { AlunoService } from '../aluno.service';
+import { AlunoService } from '../services/aluno.service';
 import Aluno from 'src/app/shared/models/Aluno';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-show-details',
@@ -29,7 +28,7 @@ export class ShowDetailsComponent implements OnInit {
       estado: '',
       cep: '',
     },
-    avaliacoes: []
+    avaliacoes: [],
   };
 
   changeActive(tipo: string) {
@@ -39,7 +38,7 @@ export class ShowDetailsComponent implements OnInit {
   constructor(
     private alunoService: AlunoService,
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {

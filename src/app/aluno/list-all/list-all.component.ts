@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import Aluno from 'src/app/shared/models/Aluno';
-import { AlunoService } from '../aluno.service';
+import { AlunoService } from '../services/aluno.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,8 +13,6 @@ export class ListAllComponent {
   isLoading: boolean = true;
   alunoDeleted: boolean = false;
   idAlunoToDelete: number | null = null;
-
-  
 
   alertType: 'success' | 'danger' = 'success';
   canShowAlert: boolean = false;
@@ -30,7 +28,7 @@ export class ListAllComponent {
         this.isLoading = false;
       },
       error: (error) => {
-      this.showAlert('danger', `Erro ao carregar alunos: ${error}`);
+        this.showAlert('danger', `Erro ao carregar alunos: ${error}`);
         this.isLoading = false;
       },
     });
@@ -55,13 +53,14 @@ export class ListAllComponent {
   changeAlunoDeleted(event: boolean) {
     this.alunoDeleted = event;
     this.showAlert('success', 'Registro removido com sucesso.');
-    this.alunos = this.alunos.filter(aluno => aluno.id !== this.idAlunoToDelete);
+    this.alunos = this.alunos.filter(
+      (aluno) => aluno.id !== this.idAlunoToDelete
+    );
   }
 
-  showAlert(type: 'success' | 'danger',  message: string): void {
+  showAlert(type: 'success' | 'danger', message: string): void {
     this.canShowAlert = true;
     this.alertType = type;
     this.alertMessage = message;
   }
-
 }

@@ -1,7 +1,7 @@
 import Aluno from 'src/app/shared/models/Aluno';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlunoService } from '../aluno.service';
+import { AlunoService } from '../services/aluno.service';
 
 @Component({
   selector: 'app-update',
@@ -9,7 +9,6 @@ import { AlunoService } from '../aluno.service';
   styleUrls: ['./update.component.scss'],
 })
 export class UpdateComponent implements OnInit {
-
   aluno: Aluno = {
     id: 0,
     nome: '',
@@ -24,11 +23,11 @@ export class UpdateComponent implements OnInit {
       estado: '',
       cep: '',
     },
-    avaliacoes: []
+    avaliacoes: [],
   };
 
-  tipoConteudoAtivo: 'aluno'|'endereco'|'avaliacoes' = 'aluno';
-  tiposConteudo: [string, string, string] = ['aluno','endereco', 'avaliacoes']
+  tipoConteudoAtivo: 'aluno' | 'endereco' | 'avaliacoes' = 'aluno';
+  tiposConteudo: [string, string, string] = ['aluno', 'endereco', 'avaliacoes'];
   isLoading: boolean = true;
 
   alunoId: number = 17;
@@ -36,29 +35,30 @@ export class UpdateComponent implements OnInit {
   constructor(
     private alunoService: AlunoService,
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router
+  ) {}
 
-    ngOnInit(): void {
-      this.route.paramMap.subscribe(params => {
-        const idAluno = Number(params.get('id'));
-        this.alunoId = idAluno;
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const idAluno = Number(params.get('id'));
+      this.alunoId = idAluno;
 
-        this.alunoService.getAlunoById(idAluno).subscribe({
-          next: (aluno: Aluno) => {
-            this.aluno = aluno;
-            this.isLoading = false;
-          },
-          error: (error) => {
-            console.error('Erro ao carregar aluno:', error);
-            this.isLoading = false;
-          },
-        });
+      this.alunoService.getAlunoById(idAluno).subscribe({
+        next: (aluno: Aluno) => {
+          this.aluno = aluno;
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Erro ao carregar aluno:', error);
+          this.isLoading = false;
+        },
       });
-    }
+    });
+  }
 
-    changeTipoConteudo(tipo: 'aluno'|'endereco'|'avaliacoes') {
-      this.tipoConteudoAtivo = tipo;
-    }
+  changeTipoConteudo(tipo: 'aluno' | 'endereco' | 'avaliacoes') {
+    this.tipoConteudoAtivo = tipo;
+  }
 
   backHome() {
     this.router.navigateByUrl('/alunos');

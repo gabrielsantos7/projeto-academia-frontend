@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlunoService } from 'src/app/aluno/aluno.service';
+import { AlunoService } from 'src/app/aluno/services/aluno.service';
 import Aluno from 'src/app/shared/models/Aluno';
 
 @Component({
@@ -10,8 +10,7 @@ import Aluno from 'src/app/shared/models/Aluno';
 export class IndexComponent {
   alunos: Aluno[] = [];
 
-  constructor(private alunoService: AlunoService) {
-  }
+  constructor(private alunoService: AlunoService) {}
 
   ngOnInit() {
     this.alunoService.getAlunos().subscribe((data: Aluno[]) => {
@@ -20,4 +19,3 @@ export class IndexComponent {
     });
   }
 }
-

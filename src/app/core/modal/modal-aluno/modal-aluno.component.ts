@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { AlunoService } from 'src/app/aluno/aluno.service';
+import { AlunoService } from 'src/app/aluno/services/aluno.service';
 
 @Component({
   selector: 'app-modal-aluno',

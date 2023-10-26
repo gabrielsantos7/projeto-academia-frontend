@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlunoService } from '../aluno.service';
+import { AlunoService } from '../services/aluno.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

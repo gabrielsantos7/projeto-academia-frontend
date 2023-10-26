@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import Aluno from '../shared/models/Aluno';
+import Aluno from '../../shared/models/Aluno';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class AlunoService {
 
   constructor(private http: HttpClient) {
     //this.apiUrl = 'https://backend-academia-production.up.railway.app/';
-    this.apiUrl = 'http://localhost:8080'
+    this.apiUrl = 'http://localhost:8080';
     // this.apiUrl = 'http://localhost:3000';
   }
 
@@ -32,7 +32,10 @@ export class AlunoService {
   create(aluno: Aluno): Observable<any> {
     return this.http
       .post(`${this.apiUrl}/alunos`, JSON.stringify(aluno), this.httpOptions)
-      .pipe(res => res, error => error);
+      .pipe(
+        (res) => res,
+        (error) => error
+      );
   }
 
   // create(camiseta:Camiseta):  Observable<any> {

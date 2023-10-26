@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AlunoRoutingModule } from './aluno-routing.module';
-import { AlunoService } from './aluno.service';
+import { AlunoService } from './services/aluno.service';
 import { ListAllComponent } from './list-all/list-all.component';
 import { ShowDetailsComponent } from './show-details/show-details.component';
 import { LoaderModule } from '../core/loader/loader.module';
@@ -20,7 +20,7 @@ import { TelefoneMaskDirective } from '../shared/directives/telefone-mask.direct
     ShowDetailsComponent,
     UpdateComponent,
     CreateComponent,
-    TelefoneMaskDirective
+    TelefoneMaskDirective,
   ],
   imports: [
     CommonModule,
@@ -32,9 +32,6 @@ import { TelefoneMaskDirective } from '../shared/directives/telefone-mask.direct
     AlertModule,
   ],
   providers: [AlunoService],
-  exports: [
-    ListAllComponent,
-    ShowDetailsComponent
-  ]
+  exports: [ListAllComponent, ShowDetailsComponent],
 })
 export class AlunoModule {}
