@@ -16,7 +16,6 @@ export class ListAllComponent {
 
   alertType: 'success' | 'danger' = 'success';
   canShowAlert: boolean = false;
-  strongMessage: string = '';
   alertMessage: string = '';
 
   constructor(private alunoService: AlunoService, private router: Router) {}

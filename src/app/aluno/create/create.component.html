@@ -27,7 +27,6 @@
         <label for="telefone">Telefone</label>
       </div>
 
-
       <div class="form-group form-floating">
         <input
           formControlName="dataNascimento"
@@ -38,21 +37,23 @@
         />
         <label for="dataNascimento">Data de Nascimento</label>
       </div>
-      <button
-        type="button"
-        class="btn btn-secondary"
-        id="btn-close"
-        (click)="backHome()"
-      >
-        <i class="bi bi-x-lg"></i> Cancelar
-      </button>
-      <button
-        type="button"
-        class="btn btn-dark"
-        (click)="changeTipoConteudo('endereco')"
-      >
-      <i class="bi bi-arrow-right-square"></i> Próximo
-      </button>
+      <div class="row m-3">
+        <button
+          type="button"
+          class="btn btn-secondary col-3 me-2"
+          id="btn-close"
+          (click)="backHome()"
+        >
+          <i class="bi bi-x-lg"></i> Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-dark col-3"
+          (click)="changeTipoConteudo('endereco')"
+        >
+          <i class="bi bi-arrow-right-square"></i> Próximo
+        </button>
+      </div>
     </div>
 
     <div
@@ -60,89 +61,109 @@
       id="inputs-endereco"
       *ngIf="tipoConteudoAtivo === 'endereco'"
     >
-    <h3>Endereço</h3>
-      <div class="form-group form-floating mb-3">
-        <input
-          formControlName="rua"
-          type="text"
-          class="form-control"
-          id="rua"
-          name="rua"
-          placeholder="Rua"
-        />
-        <label for="rua">Rua</label>
+      <h3>Endereço</h3>
+      <div class="row">
+        <div class="form-group form-floating mb-3 col-6">
+          <input
+            formControlName="rua"
+            type="text"
+            class="form-control"
+            id="rua"
+            name="rua"
+            placeholder="Rua"
+          />
+          <label for="rua">Rua</label>
+        </div>
+
+        <div class="form-group form-floating mb-3 col-6">
+          <input
+            formControlName="bairro"
+            type="text"
+            class="form-control"
+            id="bairro"
+            name="bairro"
+            placeholder="Bairro"
+          />
+          <label for="bairro">Bairro</label>
+        </div>
       </div>
 
-      <div class="form-group form-floating mb-3">
-        <input
-          formControlName="bairro"
-          type="text"
-          class="form-control"
-          id="bairro"
-          name="bairro"
-          placeholder="Bairro"
-        />
-        <label for="bairro">Bairro</label>
+      <div class="row">
+        <div class="form-group form-floating mb-3 col-6">
+          <input
+            formControlName="numero"
+            type="text"
+            class="form-control"
+            id="numero"
+            name="numero"
+            placeholder="Número"
+          />
+          <label for="numero">Número</label>
+        </div>
+
+        <div class="form-group form-floating mb-3 col-6">
+          <input
+            formControlName="cep"
+            type="text"
+            class="form-control"
+            id="cep"
+            name="cep"
+            placeholder="CEP"
+          />
+          <label for="cep">CEP</label>
+        </div>
       </div>
 
-      <div class="form-group form-floating mb-3">
-        <input
-          formControlName="numero"
-          type="text"
-          class="form-control"
-          id="numero"
-          name="numero"
-          placeholder="Número"
-        />
-        <label for="numero">Número</label>
+      <div class="row">
+        <div class="form-group mb-3 col-6">
+          <label for="estado">Estado</label>
+          <select
+            formControlName="estado"
+            (change)="onChangeEstado($event)"
+            class="form-select"
+            aria-label="Estado"
+          >
+            <option value="">Selecione um estado</option>
+            <option *ngFor="let estado of estados" [value]="estado.sigla">
+              {{ estado.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group col-6 mb-3">
+          <label for="cidade">Cidade</label>
+          <select
+            formControlName="cidade"
+            class="form-select"
+            aria-label="Cidade"
+          >
+            <option value="">Selecione uma cidade</option>
+            <option *ngFor="let cidade of cidades" [value]="cidade.nome">
+              {{ cidade.nome }}
+            </option>
+          </select>
+        </div>
       </div>
 
-      <div class="form-group form-floating mb-3">
-        <label for="estado">Estado</label>
-        <input
-          formControlName="estado"
-          type="text"
-          class="form-control"
-          id="estado"
-          name="estado"
-          placeholder="Estado"
-        />
+      <div class="row m-3">
+        <button
+          type="button"
+          class="btn btn-dark col-3 me-2"
+          (click)="changeTipoConteudo('aluno')"
+        >
+          <i class="bi bi-arrow-left-square"></i> Anterior
+        </button>
+        <button type="submit" class="btn btn-primary col-3">
+          <i class="bi bi-floppy me-2"></i>Salvar
+        </button>
       </div>
-
-      <div class="form-group form-floating mb-3">
-        <label for="cidade">Cidade</label>
-        <input
-          formControlName="cidade"
-          type="text"
-          class="form-control"
-          id="cidade"
-          name="cidade"
-          placeholder="Cidade"
-        />
-      </div>
-
-      <div class="form-group form-floating mb-3">
-        <label for="cep">CEP</label>
-        <input
-          formControlName="cep"
-          type="text"
-          class="form-control"
-          id="cep"
-          name="cep"
-          placeholder="CEP"
-        />
-      </div>
-
-      <button
-        type="button"
-        class="btn btn-dark"
-        (click)="changeTipoConteudo('aluno')"
-      >
-      <i class="bi bi-arrow-left-square"></i> Anterior
-      </button>
-      <button type="submit" class="btn btn-primary">
-        <i class="bi bi-floppy"></i>Salvar
-      </button>
     </div>
   </form>
+  <app-alert
+    *ngIf="canShowAlert"
+    [type]="alertType"
+    [message]="alertMessage"
+    [duration]="5000"
+  >
+  </app-alert>
 </div>

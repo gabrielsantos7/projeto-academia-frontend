@@ -22,8 +22,9 @@ export class CreateComponent implements OnInit {
   selectedEstado: string;
   selectedCidade: string;
 
-  cidadeInfo: Cidade | null;
-  canShowInfoCity: boolean;
+  alertType: 'success' | 'danger' = 'success';
+  canShowAlert: boolean = false;
+  alertMessage: string = '';
 
   constructor(
     private alunoService: AlunoService,
@@ -48,8 +49,7 @@ export class CreateComponent implements OnInit {
 
     this.selectedEstado = '';
     this.selectedCidade = '';
-    this.canShowInfoCity = false;
-    this.cidadeInfo = null;
+    this.canShowAlert = false;
   }
 
   ngOnInit() {
@@ -59,7 +59,8 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  onChangeEstado(uf: string) {
+  onChangeEstado(event: Event) {
+    const uf = (event.target as HTMLSelectElement)?.value;
     this.ibgeService.getCidadesByEstado(uf).subscribe((data: Cidade[]) => {
       this.cidades = data;
     });
@@ -85,8 +86,14 @@ export class CreateComponent implements OnInit {
   submit() {
     console.log(this.alunoForm.value);
     this.alunoService.create(this.alunoForm.value).subscribe((res) => {
-      alert('Aluno salvo com sucesso!');
+      this.showAlert('success', 'Aluno salvo com sucesso!');
       this.backHome();
     });
+  }
+
+  showAlert(type: 'success' | 'danger', message: string): void {
+    this.canShowAlert = true;
+    this.alertType = type;
+    this.alertMessage = message;
   }
 }
