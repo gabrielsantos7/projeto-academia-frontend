@@ -1,18 +1,18 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appTelefoneMask]',
+  selector: '[appCepMask]',
 })
-export class TelefoneMaskDirective {
+export class CepMaskDirective {
   constructor(private el: ElementRef) {}
 
   @HostListener('input', ['$event']) onInput(event: Event) {
     const input = event.target as HTMLInputElement;
-    let value = input.value.replace(/\D/g, '');
+    let value = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
 
-    // Aplica a máscara (XX) XXXXX-XXXX ao valor
     if (value.length > 0) {
-      value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7, 11)}`;
+      // Aplica a máscara XXXXX-XXX ao valor
+      value = `${value.slice(0, 5)}-${value.slice(5, 8)}`;
     }
 
     input.value = value;

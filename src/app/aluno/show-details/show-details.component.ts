@@ -60,9 +60,9 @@ export class ShowDetailsComponent implements OnInit {
 
   formatarEndereco() {
     const endereco = this.aluno.endereco;
-    this.enderecoFormatado.push(`Rua ${endereco.rua}, ${endereco.numero}.`);
+    this.enderecoFormatado.push(`${endereco.rua}, ${endereco.numero}.`);
     this.enderecoFormatado.push(
-      `Bairro ${endereco.bairro}, ${endereco.cidade}, ${endereco.estado}.`
+      `${endereco.bairro}, ${endereco.cidade}, ${endereco.estado}.`
     );
     this.enderecoFormatado.push(`CEP: ${endereco.cep}`);
   }
