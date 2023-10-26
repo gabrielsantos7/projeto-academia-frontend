@@ -31,6 +31,8 @@ export class ShowDetailsComponent implements OnInit {
     avaliacoes: [],
   };
 
+  enderecoFormatado: string[] = [];
+
   changeActive(tipo: string) {
     this.tipoConteudoAtivo = tipo;
   }
@@ -48,12 +50,23 @@ export class ShowDetailsComponent implements OnInit {
       next: (aluno: Aluno) => {
         this.aluno = aluno;
         this.isLoading = false;
+        this.formatarEndereco();
       },
       error: (error) => {
         console.error('Erro ao carregar alunos:', error);
         this.isLoading = false;
       },
     });
+  }
+
+  formatarEndereco() {
+    const endereco = this.aluno.endereco;
+    this.enderecoFormatado.push(`${endereco.rua}, ${endereco.numero}.`);
+    this.enderecoFormatado.push(
+      `Bairro ${endereco.bairro}, ${endereco.cidade}, ${endereco.estado}.`
+    );
+    this.enderecoFormatado.push(`CEP: ${endereco.cep}`);
+    // this.enderecoFormatado = `${endereco.rua}, ${endereco.numero}. Bairro ${endereco.bairro}, ${endereco.cidade}, ${endereco.estado}. CEP: ${endereco.cep}`;
   }
 
   backHome() {
