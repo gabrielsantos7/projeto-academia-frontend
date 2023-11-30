@@ -70,4 +70,8 @@ export class ShowDetailsComponent implements OnInit {
   backHome() {
     this.router.navigateByUrl('/alunos');
   }
+
+  editInfo() {
+    this.router.navigateByUrl(`alunos/${this.aluno.id}/edit`);
+  }
 }

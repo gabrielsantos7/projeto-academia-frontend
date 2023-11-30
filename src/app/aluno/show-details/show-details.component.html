@@ -1,4 +1,4 @@
-<div class="container-fluid mx-auto my-2">
+<div class="container-fluid mx-auto my-2 py-5">
   <ul class="nav nav-tabs mb-3">
     <li class="nav-item" (click)="changeActive('aluno')">
       <p
@@ -52,6 +52,10 @@
           <td>{{ aluno.nome }}</td>
         </tr>
         <tr>
+          <td class="fw-bold">Telefone:</td>
+          <td>{{ aluno.telefone }}</td>
+        </tr>
+        <tr>
           <td class="fw-bold">Data de Nascimento:</td>
           <td>{{ aluno.dataNascimento | date : "dd/MM/yyyy" }}</td>
         </tr>
@@ -68,7 +72,7 @@
       <i class="bi bi-x-lg"></i> Fechar
     </button>
 
-    <button class="btn btn-primary col-7">
+    <button class="btn btn-primary col-7" (click)="editInfo()">
       <i class="bi bi-pencil-square" style="color: #ffffff"></i> Editar
       informações pessoais
     </button>
