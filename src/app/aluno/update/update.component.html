@@ -27,165 +27,183 @@
     </ul>
   </div>
 
-  <div *ngIf="!isLoading && tipoConteudoAtivo === 'aluno'" >
-    <form>
-      <div class="form-group">
-        <label for="id">ID</label>
-        <input
-          type="number"
-          class="form-control"
-          id="id"
-          name="id"
-          [(ngModel)]="aluno.id"
-          placeholder="ID"
-          disabled="true"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="nome">Nome</label>
-        <input
-          type="text"
-          class="form-control"
-          id="nome"
-          name="nome"
-          [(ngModel)]="aluno.nome"
-          placeholder="Nome"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="telefone">Telefone</label>
-        <input
-          type="text"
-          class="form-control"
-          id="telefone"
-          name="telefone"
-          [(ngModel)]="aluno.telefone"
-          placeholder="Telefone"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="dataNascimento">Data de Nascimento</label>
-        <input
-          type="date"
-          class="form-control"
-          id="dataNascimento"
-          name="dataNascimento"
-          [(ngModel)]="aluno.dataNascimento"
-        />
-      </div>
-    </form>
-  </div>
-
-  <div *ngIf="!isLoading && tipoConteudoAtivo === 'endereco'">
-    <form>
-      <!-- <div class="form-group">
-              <label for="rua">Rua</label>
-              <input type="text" class="form-control" id="rua" name="rua" [(ngModel)]="aluno.endereco.rua" placeholder="Rua">
-            </div> -->
-
-      <div class="form-group">
-        <label for="id">ID</label>
-        <input
-          type="number"
-          class="form-control"
-          id="id"
-          name="id"
-          [(ngModel)]="aluno.endereco.id"
-          placeholder="ID"
-          disabled="true"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="rua">Rua</label>
-        <input
-          type="text"
-          class="form-control"
-          id="rua"
-          name="rua"
-          [(ngModel)]="aluno.endereco.rua"
-          placeholder="rua"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="bairro">Bairro</label>
-        <input
-          type="text"
-          class="form-control"
-          id="bairro"
-          name="bairro"
-          [(ngModel)]="aluno.endereco.bairro"
-          placeholder="Bairro"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="numero">numero</label>
-        <input
-          type="text"
-          class="form-control"
-          id="numero"
-          name="numero"
-          [(ngModel)]="aluno.endereco.numero"
-          placeholder="Número"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="cidade">Cidade</label>
-        <input
-          type="text"
-          class="form-control"
-          id="cidade"
-          name="cidade"
-          [(ngModel)]="aluno.endereco.cidade"
-          placeholder="Cidade"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="estado">Estado</label>
-        <input
-          type="text"
-          class="form-control"
-          id="estado"
-          name="estado"
-          [(ngModel)]="aluno.endereco.estado"
-          placeholder="Estado"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="cep">CEP</label>
-        <input
-          type="text"
-          class="form-control"
-          id="cep"
-          name="cep"
-          [(ngModel)]="aluno.endereco.cep"
-          placeholder="CEP"
-        />
-      </div>
-    </form>
-  </div>
-
-  <div *ngIf="!isLoading && tipoConteudoAtivo === 'avaliacoes'">
-    avaliações
-  </div>
-
   <div *ngIf="!isLoading">
-    <button
-      type="button"
-      class="btn btn-secondary"
-      id="btn-close"
-      (click)="backHome()"
-    >
-      <i class="bi bi-x-lg"></i> Cancelar
-    </button>
-    <button (click)="updateAluno()" type="button" class="btn btn-primary">Salvar</button>
+    <form [formGroup]="alunoForm" (ngSubmit)="updateAluno()" class="p-5 w-75">
+      <div id="inputs-aluno" *ngIf="tipoConteudoAtivo === 'aluno'">
+        <h3>Dados pessoais</h3>
+        <div class="form-group form-floating mb-3">
+          <input
+            formControlName="nome"
+            type="text"
+            class="form-control"
+            id="nome"
+            name="nome"
+            placeholder="Nome"
+            required
+          />
+          <label for="nome">Nome</label>
+        </div>
+
+        <div class="row">
+          <div class="form-group form-floating col-6">
+            <input
+              formControlName="telefone"
+              type="text"
+              class="form-control"
+              id="telefone"
+              name="telefone"
+              placeholder="Seu número de telefone"
+              appTelefoneMask
+              required
+            />
+            <label for="telefone">Telefone</label>
+          </div>
+
+          <div class="form-group form-floating col-6">
+            <input
+              formControlName="dataNascimento"
+              type="date"
+              class="form-control"
+              id="dataNascimento"
+              name="dataNascimento"
+              required
+            />
+            <label for="dataNascimento">Data de Nascimento</label>
+          </div>
+        </div>
+
+        <div class="row m-3">
+          <button
+            type="button"
+            class="btn btn-secondary col-3 me-2"
+            id="btn-close"
+            (click)="backHome()"
+          >
+            <i class="bi bi-x-lg"></i> Cancelar
+          </button>
+          <button
+            type="button"
+            class="btn btn-dark col-3"
+            (click)="changeTipoConteudo('endereco')"
+          >
+            <i class="bi bi-arrow-right-square"></i> Próximo
+          </button>
+        </div>
+      </div>
+
+      <div
+        formGroupName="endereco"
+        id="inputs-endereco"
+        *ngIf="tipoConteudoAtivo === 'endereco'"
+      >
+        <h3>Endereço</h3>
+        <div class="row">
+          <div class="form-group form-floating mb-3 col-6">
+            <input
+              formControlName="rua"
+              type="text"
+              class="form-control"
+              id="rua"
+              name="rua"
+              placeholder="Rua"
+              required
+            />
+            <label for="rua">Rua</label>
+          </div>
+
+          <div class="form-group form-floating mb-3 col-6">
+            <input
+              formControlName="bairro"
+              type="text"
+              class="form-control"
+              id="bairro"
+              name="bairro"
+              placeholder="Bairro"
+              required
+            />
+            <label for="bairro">Bairro</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group form-floating mb-3 col-6">
+            <input
+              formControlName="numero"
+              type="text"
+              class="form-control"
+              id="numero"
+              name="numero"
+              placeholder="Número"
+              required
+            />
+            <label for="numero">Número</label>
+          </div>
+
+          <div class="form-group form-floating mb-3 col-6">
+            <input
+            formControlName="cep"
+            type="text"
+            class="form-control"
+            id="cep"
+            name="cep"
+            placeholder="CEP"
+            appCepMask
+            required
+            />
+            <label for="cep">CEP</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group mb-3 col-6">
+            <label for="estado">Estado</label>
+            <select
+              formControlName="estado"
+              (change)="onChangeEstado($event)"
+              class="form-select"
+              name="estado"
+              id="estado"
+              aria-label="Estado"
+              required
+            >
+              <option value="">Selecione um estado</option>
+              <option *ngFor="let estado of estados" [value]="estado.sigla">
+                {{ estado.nome }}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group col-6 mb-3">
+            <label for="cidade">Cidade</label>
+            <select
+              name="cidade"
+              id="cidade"
+              formControlName="cidade"
+              class="form-select"
+              aria-label="Cidade"
+              required
+            >
+              <option value="">Selecione uma cidade</option>
+              <option *ngFor="let cidade of cidades" [value]="cidade.nome">
+                {{ cidade.nome }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row m-3">
+          <button
+            type="button"
+            class="btn btn-dark col-3 me-2"
+            (click)="changeTipoConteudo('aluno')"
+          >
+            <i class="bi bi-arrow-left-square"></i> Anterior
+          </button>
+          <button [disabled]="!this.alunoForm.valid" type="submit" class="btn btn-primary col-3">
+            <i class="bi bi-floppy me-2"></i>Salvar
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

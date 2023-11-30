@@ -17,8 +17,8 @@ export class AlunoService {
 
   constructor(private http: HttpClient) {
     //this.apiUrl = 'https://backend-academia-production.up.railway.app/';
-    // this.apiUrl = 'http://localhost:8080';
-    this.apiUrl = 'http://localhost:3000';
+    this.apiUrl = 'http://localhost:8080';
+    // this.apiUrl = 'http://localhost:3000';
   }
 
   getAlunos(): Observable<Aluno[]> {
@@ -38,17 +38,8 @@ export class AlunoService {
       );
   }
 
-  // create(camiseta:Camiseta):  Observable<any> {
-
-  //   return this.httpClient.post(this.apiURL + 'camisetas/', JSON.stringify(camiseta), this.httpOptions)
-
-  //   .pipe(
-  //     catchError(this.errorHandler)
-  //   )
-  // }
-
-  updateAluno(alunoAtualizado: Aluno): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/alunos`, alunoAtualizado);
+  updateAluno(alunoAtualizado: any): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/alunos`, JSON.stringify(alunoAtualizado), this.httpOptions);
   }
 
   deleteAluno(id: number): Observable<void> {

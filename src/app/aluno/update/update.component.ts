@@ -8,6 +8,9 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { Estado } from 'src/app/shared/models/Estado.model';
+import { Cidade } from 'src/app/shared/models/Cidade.model';
+import { IbgeService } from '../services/ibge.service';
 
 @Component({
   selector: 'app-update',
@@ -24,8 +27,15 @@ export class UpdateComponent implements OnInit {
   idAluno!: number;
   alunoForm: FormGroup;
 
+  estados: Estado[] = [];
+  cidades: Cidade[] = [];
+
+  selectedEstado: string;
+  selectedCidade: string;
+
   constructor(
     private alunoService: AlunoService,
+    private ibgeService: IbgeService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder
@@ -43,9 +53,17 @@ export class UpdateComponent implements OnInit {
         cep: ['', Validators.required],
       }),
     });
+
+    this.selectedEstado = '';
+    this.selectedCidade = '';
   }
 
   ngOnInit(): void {
+    this.ibgeService.getEstados().subscribe((data: Estado[]) => {
+      this.estados = data;
+      this.estados.sort((a, b) => a.nome.localeCompare(b.nome));
+    });
+
     this.route.paramMap.subscribe((params) => {
       this.idAluno = Number(params.get('id'));
       this.aluno.id = this.idAluno;
@@ -54,6 +72,23 @@ export class UpdateComponent implements OnInit {
         next: (data: Aluno) => {
           this.aluno = data;
           this.isLoading = false;
+
+
+          this.alunoForm.patchValue({
+            nome: this.aluno.nome,
+            telefone: this.aluno.telefone,
+            dataNascimento: this.aluno.dataNascimento,
+            endereco: {
+              rua: this.aluno.endereco.rua,
+              numero: this.aluno.endereco.numero,
+              bairro: this.aluno.endereco.bairro,
+              cep: this.aluno.endereco.cep,
+              estado: this.aluno.endereco.estado,
+              cidade: this.aluno.endereco.cidade
+            }
+          });
+
+          this.onChangeEstado(this.aluno.endereco.estado);
         },
         error: (error) => {
           console.error('Erro ao carregar aluno:', error);
@@ -61,6 +96,28 @@ export class UpdateComponent implements OnInit {
         },
       });
     });
+  }
+
+  onChangeEstado(event: Event | string) {
+    let uf: string;
+
+    if (typeof event === 'string') {
+      uf = event; // Se for uma string, atribui diretamente à variável uf
+    } else {
+      uf = (event.target as HTMLSelectElement)?.value; // Se for um evento, obtém o valor do target
+    }
+
+    // Realiza a lógica com base no valor de uf
+    this.ibgeService.getCidadesByEstado(uf).subscribe((data: Cidade[]) => {
+      this.cidades = data;
+
+    });
+  }
+
+
+  getCidadeIdByName(cityName: string): number | null {
+    const cidade = this.cidades.find(cidade => cidade.nome === cityName);
+    return cidade ? cidade.id : null;
   }
 
   get f() {
@@ -80,17 +137,25 @@ export class UpdateComponent implements OnInit {
   }
 
   updateAluno() {
-    this.aluno.nome = this.alunoForm.value.nome;
-    this.aluno.dataNascimento = this.alunoForm.value.dataNascimento;
-    this.aluno.endereco.rua = this.alunoForm.value.endereco.rua;
-    this.aluno.endereco.numero = this.alunoForm.value.endereco.numero;
-    this.aluno.endereco.bairro = this.alunoForm.value.endereco.bairro;
-    this.aluno.endereco.cidade = this.alunoForm.value.endereco.cidade;
-    this.aluno.endereco.estado = this.alunoForm.value.endereco.estado;
-    this.aluno.endereco.cep = this.alunoForm.value.endereco.cep;
-    this.alunoService.updateAluno(this.aluno).subscribe((res) => {
-      console.log('Aluno atualizado com sucesso!');
+    const updatedAluno = {
+      id: this.aluno.id,
+      nome: this.alunoForm.value.nome,
+      telefone: this.alunoForm.value.telefone,
+      dataNascimento: this.alunoForm.value.dataNascimento,
+      endereco: {
+        rua: this.alunoForm.value.endereco.rua,
+        numero: this.alunoForm.value.endereco.numero,
+        bairro: this.alunoForm.value.endereco.bairro,
+        cidade: this.alunoForm.value.endereco.cidade,
+        estado: this.alunoForm.value.endereco.estado,
+        cep: this.alunoForm.value.endereco.cep,
+      }
+      // Não inclua avaliações aqui, pois não estão sendo atualizadas
+    };
+
+    this.alunoService.updateAluno(updatedAluno).subscribe((res) => {
       this.showAlunoDetails();
     });
   }
+
 }
